@@ -368,9 +368,9 @@ export const Chat = memo(({ stopConversationRef }: Props) => {
               
             </div>
             <div className="mb-2">
-              {t(
+              {t('your_translation_key')
                 
-              )}
+              }
             </div>
             <div>
               {t("If you don't have an OpenAI API key, you can get one here: ")}
