@@ -64,4 +64,10 @@ export const OpenAIModels: Record<OpenAIModelID, OpenAIModel> = {
     maxLength: 4096, // as per the context window
     tokenLimit: 128000, // as per the training data
   },
+   [OpenAIModelID.GPT_4_TURBO_VISION]: {
+    id: OpenAIModelID.GPT_4_TURBO_VISION,
+    name: 'GPT-4-TURBO-VISION',
+    maxLength: 4096, // as per the context window
+    tokenLimit: 128000, // as per the training data
+  },
 };
