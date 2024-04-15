@@ -14,7 +14,7 @@ export enum OpenAIModelID {
   GPT_4_32K = 'gpt-4-32k',
   GPT_4_1106_PREVIEW = 'gpt-4-1106-preview',
   GPT_4_VISION_PREVIEW = 'gpt-4-vision-preview',
-  GPT_4_TURBO = 'gpt-4-turbo',
+  GPT_4_TURBO = ' gpt-4-turbo-2024-04-09',
   GPT_4_TURBO_VISION = 'gpt-4-turbo-vision'
 }
 
