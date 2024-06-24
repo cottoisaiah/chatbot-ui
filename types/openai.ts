@@ -18,17 +18,6 @@ export enum OpenAIModelID {
 // in case the `DEFAULT_MODEL` environment variable is not set or set to an unsupported model
 export const fallbackModelID = OpenAIModelID.GPT_4;
 
-export const fallbackModelID = OpenAIModelID.GPT_4;
-export enum OpenAIModelID {
-  GPT_3_5 = 'gpt-3.5-turbo-0125',
-  GPT_4 = 'gpt-4-turbo-2024-04-09',
-  GPT_4O = 'gpt-4o-2024-05-13',
-  GPT_4_TURBO = 'gpt-4-turbo-2024-04-09',
-}
-
-// in case the `DEFAULT_MODEL` environment variable is not set or set to an unsupported model
-export const fallbackModelID = OpenAIModelID.GPT_4;
-
 export const OpenAIModels: Record<OpenAIModelID, OpenAIModel> = {
   [OpenAIModelID.GPT_3_5]: {
     id: OpenAIModelID.GPT_3_5,
