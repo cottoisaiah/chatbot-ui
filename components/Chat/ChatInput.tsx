@@ -62,6 +62,7 @@ export const ChatInput = ({
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [showPluginSelect, setShowPluginSelect] = useState(false);
   const [plugin, setPlugin] = useState<Plugin | null>(null);
+  const [selectedPrompt, setSelectedPrompt] = useState<Prompt | null>(null); // Added selectedPrompt state
 
   const promptListRef = useRef<HTMLUListElement | null>(null);
 
@@ -125,21 +126,15 @@ export const ChatInput = ({
     }, 1000);
   };
 
-  const isMobile = () => {
-    const userAgent =
-      typeof window.navigator === 'undefined' ? '' : navigator.userAgent;
-    const mobileRegex =
-      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile|CriOS/i;
-    return mobileRegex.test(userAgent);
-  };
-
   const handleInitModal = (prompt: Prompt) => {
+    setSelectedPrompt(prompt); // Set selectedPrompt
     setVariables(prompt.variables || []);
     setIsModalVisible(true);
   };
 
   const handleVariableSubmit = (filledVariables: string[]) => {
     setIsModalVisible(false);
+    setSelectedPrompt(null); // Reset selectedPrompt
     const promptWithVariables = filledVariables.reduce((content, variable, index) => {
       return content.replace(`{{${index}}}`, variable);
     }, content || '');
@@ -162,17 +157,15 @@ export const ChatInput = ({
     setShowPromptList(hasPrompts);
   };
 
-    // 1. Manage typing effect
   useEffect(() => {
     if (isTyping) {
       const timer = setTimeout(() => {
         setIsTyping(false);
       }, 1000);
-      return () => clearTimeout(timer); // Cleanup the timer
+      return () => clearTimeout(timer);
     }
   }, [isTyping]);
 
-  // 2. Scroll prompt list into view when visibility changes
   useEffect(() => {
     if (showPromptList && promptListRef.current) {
       promptListRef.current.scrollIntoView({ behavior: 'smooth' });
@@ -182,13 +175,16 @@ export const ChatInput = ({
   return (
     <div className="chat-input-container">
       {isModalVisible && selectedPrompt && (
-    <VariableModal
-      prompt={selectedPrompt} // Pass the prompt here
-      variables={variables}
-      onSubmit={handleVariableSubmit}
-      onClose={() => setIsModalVisible(false)}
-    />
-  )}
+        <VariableModal
+          prompt={selectedPrompt}
+          variables={variables}
+          onSubmit={handleVariableSubmit}
+          onClose={() => {
+            setIsModalVisible(false);
+            setSelectedPrompt(null); // Reset selectedPrompt
+          }}
+        />
+      )}
 
       {showPromptList && (
         <PromptList
