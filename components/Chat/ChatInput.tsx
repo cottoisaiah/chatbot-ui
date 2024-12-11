@@ -199,7 +199,7 @@ export const ChatInput = ({
       <textarea
         ref={textareaRef}
         className="chat-input-textarea"
-        placeholder={t('Type your message...')}
+        placeholder={t('Type your message...')}.toString()}
         value={content || ''}
         onChange={handleChange}
         onKeyDown={handleKeyDown}
