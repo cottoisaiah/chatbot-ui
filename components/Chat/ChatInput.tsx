@@ -190,7 +190,7 @@ export const ChatInput = ({
         <PromptList
           prompts={filteredPrompts}
           activeIndex={activePromptIndex}
-          onSelect={(prompt) => handleInitModal(prompt)}
+          onSelect={(prompt) => handleInitModal(prompt)} // Now matches the type
           onHover={(index) => setActivePromptIndex(index)}
           ref={promptListRef}
         />
