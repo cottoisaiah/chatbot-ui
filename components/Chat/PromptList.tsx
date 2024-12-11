@@ -4,10 +4,10 @@ import { Prompt } from '@/types/prompt';
 
 interface Props {
   prompts: Prompt[];
-  activePromptIndex: number;
-  onSelect: () => void;
-  onMouseOver: (index: number) => void;
-  promptListRef: MutableRefObject<HTMLUListElement | null>;
+  activeIndex: number;
+  onSelect: (prompt: Prompt) => void; // Updated to accept a Prompt parameter
+  onHover: (index: number) => void;
+  ref?: React.Ref<HTMLUListElement>;
 }
 
 export const PromptList: FC<Props> = ({
