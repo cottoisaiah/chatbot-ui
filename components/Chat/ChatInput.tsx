@@ -162,20 +162,22 @@ export const ChatInput = ({
     setShowPromptList(hasPrompts);
   };
 
+    // 1. Manage typing effect
   useEffect(() => {
     if (isTyping) {
       const timer = setTimeout(() => {
         setIsTyping(false);
       }, 1000);
-      return () => clearTimeout(timer);
+      return () => clearTimeout(timer); // Cleanup the timer
     }
   }, [isTyping]);
 
+  // 2. Scroll prompt list into view when visibility changes
   useEffect(() => {
     if (showPromptList && promptListRef.current) {
       promptListRef.current.scrollIntoView({ behavior: 'smooth' });
     }
-  }, [activePromptIndex]);
+  }, [showPromptList]);
 
   return (
     <div className="chat-input-container">
