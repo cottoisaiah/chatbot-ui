@@ -181,13 +181,14 @@ export const ChatInput = ({
 
   return (
     <div className="chat-input-container">
-      {isModalVisible && (
-        <VariableModal
-          variables={variables}
-          onSubmit={handleVariableSubmit}
-          onClose={() => setIsModalVisible(false)}
-        />
-      )}
+      {isModalVisible && selectedPrompt && (
+    <VariableModal
+      prompt={selectedPrompt} // Pass the prompt here
+      variables={variables}
+      onSubmit={handleVariableSubmit}
+      onClose={() => setIsModalVisible(false)}
+    />
+  )}
 
       {showPromptList && (
         <PromptList
